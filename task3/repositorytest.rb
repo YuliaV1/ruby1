@@ -5,8 +5,8 @@ require_relative "person"
 class PersonRepositoryTest < Test::Unit::TestCase
   def setup
     @repository = PersonRepository.new
-    @person1 = Person.new("Julia", "AA0123456789", "1990-01-01")
-    @person2 = Person.new("Kit", "BB9876543210", "1985-05-05")
+    @person1 = Person.new("Julia", "AA0123456789", "1999-01-01")
+    @person2 = Person.new("Kit", "BB9876543210", "1999-05-05")
     @repository.add(@person1)
     @repository.add(@person2)
   end
@@ -14,7 +14,7 @@ class PersonRepositoryTest < Test::Unit::TestCase
   def test_add_person
     assert_equal(2, @repository.get.length)
 
-    person3 = Person.new("John", "CC2468135790", "2000-12-31")
+    person3 = Person.new("John", "CC2468135790", "2003-1-28")
     @repository.add(person3)
 
     assert_equal(3, @repository.get.length)
@@ -63,8 +63,8 @@ class PersonRepositoryTest < Test::Unit::TestCase
     assert_false(Validation.valid_id?("AA01234567890"))
     assert_false(Validation.valid_id?("ABCD123456789"))
 
-    assert_true(Validation.valid_date_of_birth?(Time.new(1990, 1, 1)))
+    assert_true(Validation.valid_date_of_birth?(Time.new(1999, 1, 1)))
     assert_false(Validation.valid_date_of_birth?(Time.now))
-    assert_false(Validation.valid_date_of_birth?("1990-01-01"))
+    assert_false(Validation.valid_date_of_birth?("1999-01-01"))
   end
 end
